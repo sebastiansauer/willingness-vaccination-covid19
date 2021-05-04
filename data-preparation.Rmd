@@ -1,0 +1,134 @@
+---
+title: "Aufbereitung der Umfrage zur Corona-Impfbereitschaft"
+author: "ses"
+date: "5/4/2021"
+output: html_document
+---
+
+```{r global-knitr-options, include=FALSE}
+knitr::opts_chunk$set(fig.pos = 'H',
+  fig.asp = 0.618,
+  fig.width = 5,
+  fig.cap = "", 
+  fig.path = "",
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  cache = FALSE,
+  fig.show = "hold")
+```
+
+
+
+# Pakete laden
+
+```{r}
+library(tidyverse)
+library(janitor)
+```
+
+
+# Daten laden
+
+
+
+```{r}
+d_raw <- read_csv("https://raw.githubusercontent.com/sebastiansauer/willingness-vaccination-covid19/main/raw-data/willingness-vacc-covid19-raw.csv")
+```
+
+Ein Blick in die Daten:
+
+
+```{r}
+glimpse(d_raw)
+```
+
+Nur die Spaltennamen:
+
+```{r}
+names(d_raw)
+```
+
+
+# Daten aufbereiten
+
+## Spaltennamen anpassen
+
+Codebuch einlesen:
+
+```{r}
+codebook <- readxl::read_xlsx("data/codebook-covid-vac-willingness.xlsx")
+```
+
+
+```{r}
+names(d_raw) <- codebook %>% pull(variable)
+```
+
+
+Prüfen, ob es funktioniert hat.
+
+```{r}
+names(d_raw)
+```
+
+
+## Negativ codierte Items umpolen
+
+
+```{r}
+d <- d_raw %>% 
+  mutate(extra1 = 6 - extra1,
+         cons1 = 6 - cons1,
+         neuro1 = 6 - neuro1,
+         open1 = 6 - open1,
+         agree2 = 6 - agree2)
+```
+
+
+## Zeilenmittelwerte berechnen
+
+
+```{r}
+d2 <-
+  d %>% 
+  rowwise() %>% 
+  mutate(extra = mean(c(extra1, extra2)),
+         agree = mean(c(agree1, agree2)),
+         neuro = mean(c(neuro1, neuro2)),
+         cons = mean(c(cons1, cons2)),
+         open = mean(c(open1, open2))) %>% 
+  ungroup()
+```
+
+
+## Fehlende Werte prüfen
+
+
+Leere Zeilen entfernen:
+
+
+```{r}
+d3 <-
+  d2 %>% 
+  remove_empty("rows")
+```
+
+
+```{r}
+d3 <-
+  d2 %>% 
+  filter(across(willingness:open2, 
+                ~ !is.na(.x)))
+```
+
+
+
+# Daten speichern
+
+
+```{r}
+write_csv(d3, file = "data/d3.csv")
+```
+
+
