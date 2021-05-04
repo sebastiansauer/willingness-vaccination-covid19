@@ -33,7 +33,7 @@ library(janitor)
 
 
 ```{r}
-d_raw <- read_csv("https://raw.githubusercontent.com/sebastiansauer/willingness-vaccination-covid19/main/raw-data/willingness-vacc-covid19-raw.csv")
+d_raw <- read_csv("https://raw.githubusercontent.com/sebastiansauer/willingness-vaccination-covid19/main/data/willingness-vacc-covid19-raw.csv")
 ```
 
 Ein Blick in die Daten:
@@ -62,7 +62,10 @@ codebook <- readxl::read_xlsx("data/codebook-covid-vac-willingness.xlsx")
 
 
 ```{r}
-names(d_raw) <- codebook %>% pull(variable)
+names(d_raw) <- 
+  codebook %>% 
+  pull(variable) %>% 
+  `[`(1:length(names(d_raw)))
 ```
 
 
