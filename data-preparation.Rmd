@@ -141,3 +141,8 @@ write_csv(d3, file = "data/d3.csv")
 ```
 
 
+```{r}
+write_csv(codebook, file = "data/codebook.csv")
+```
+
+

@@ -1,0 +1,24 @@
+id,variable,description,values,comments
+1,timestamp,"date, time of data submission",date-time,NA
+2,willingness,willingness to get a covid19 vaccination,1 to 10,NA
+3,health,self-reported health,1 to 10,NA
+4,fear,self-reported fear of covid19,1 to 10,NA
+5,cases,How many individuals infected with covid19 do you know pesonally?,nonnegative number,NA
+6,extra1,I see myself as someone who is reserved.,1 to 5,negatively coded
+7,agree1,I see myself as someone who is generally trusting.,1 to 6,NA
+8,cons1,I see myself as someone who tends to be lazy.,1 to 7,negatively coded
+9,neuro1,"I see myself as someone who is relaxed, handles stress well.",1 to 8,negatively coded
+10,open1,I see myself as someone who has few artistic interests.,1 to 9,negatively coded
+11,extra2,"I see myself as someone who is outgoing, sociable.",1 to 10,NA
+12,agree2,I see myself as someone who tends to find fault with others.,1 to 11,negatively coded
+13,cons2,I see myself as someone who does a thorough job.,1 to 12,NA
+14,neuro2,I see myself as someone who gets nervous easily.,1 to 13,NA
+15,open2,I see myself as someone who has an active imagination.,1 to 14,NA
+16,age,Age in years,NA,NA
+17,sex,NA,"m,w,d","m: male, w: female, d: diverse"
+18,comments,NA,NA,NA
+19,extra,per prson mean value of extraversion,1 to 5,NA
+20,agree,per person mean value of agreeableness (Big Five trait),1 to 5,NA
+21,cons,per person mean value of conscientiousness (Big Five trait),1 to 5,NA
+22,open,per person mean value of openness (Big Five trait),1 to 5,NA
+23,neuro,per person mean value of neuroticism (Big Five trait),1 to 5,NA
