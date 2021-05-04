@@ -86,6 +86,12 @@ d <- d_raw %>%
 ```
 
 
+## Weitere Hinweise zum Big-Five-Instrument
+
+
+Das Instrument heißt *BF10* und wurde [hier](https://www.gesis.org/fileadmin/kurzskalen/working_papers/BFI10_Workingpaper.pdf) publiziert.
+
+
 ## Zeilenmittelwerte berechnen
 
 
